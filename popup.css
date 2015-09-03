@@ -2,10 +2,21 @@ body {
   width: 200px;
   color: #00457c;
 }
-h1 img {
-  width: 30px;
+#title {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  font-size: 2em;
+  vertical-align: top;
+}
+#QUT_logo {
+  display: inline-block;
+  vertical-align: top;
+  height: 40px;
+  /* Adds blue line to the right of the QUT logo */
   padding-right: 5px;
-  margin-right: 5px;
+  margin-right: 4px;
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #00457c;
@@ -13,6 +24,7 @@ h1 img {
 ul {
   list-style-type: none;
   padding: 0;
+  margin-bottom: 0;
 }
 button {
   cursor: pointer;
