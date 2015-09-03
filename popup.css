@@ -1,0 +1,28 @@
+body {
+  width: 200px;
+  color: #00457c;
+}
+h1 img {
+  width: 30px;
+  padding-right: 5px;
+  margin-right: 5px;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #00457c;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+button {
+  cursor: pointer;
+  outline: none;
+  font-size: 1.5em;
+  background-color: #00457c;
+  color: #ffffff;
+  border: none;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 5px;
+}
