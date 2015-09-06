@@ -1,6 +1,11 @@
 body {
   width: 200px;
   color: #00457c;
+  -webkit-user-select: none;
+}
+#header {
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 #title {
   display: inline-block;
@@ -8,15 +13,14 @@ body {
   line-height: 40px;
   vertical-align: middle;
   font-size: 2em;
-  vertical-align: top;
 }
 #QUT_logo {
   display: inline-block;
   vertical-align: top;
   height: 40px;
   /* Adds blue line to the right of the QUT logo */
-  padding-right: 5px;
-  margin-right: 4px;
+  padding-right: 7px;
+  margin-right: 2px;
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #00457c;
@@ -24,7 +28,7 @@ body {
 ul {
   list-style-type: none;
   padding: 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 button {
   cursor: pointer;
@@ -37,4 +41,7 @@ button {
   padding-left: 10px;
   padding-right: 10px;
   margin-top: 5px;
+}
+button:hover {
+  background-color: #00294A;
 }
