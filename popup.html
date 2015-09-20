@@ -5,34 +5,34 @@
 <head>
   <title>QUT Linker</title>
   <link rel="stylesheet" type="text/css" href="popup.css">
-  <script src="popup.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <div id="header">
-    <img src="iconFullRes.png" id="QUT_logo"></img>
-    <span id="title">Linker</span>
+  <div id="list">
+    <div id="header">
+      <img src="iconFullRes.png" id="QUT-logo"></img>
+      <span id="title">Linker</span>
+      <i class="fa fa-cog" id="settings-icon" v-on="click: showSettings()"></i>
+    </div>
+
+    <table id="links-container">
+      <tr v-repeat="link in links" v-show="!link.hidden || settingsView">
+        <td class="hide-or-delete-icon" v-on="click: toggleOrDeleteLink(link)"><i class="fa" v-class="fa-circle-o: link.hidden, fa-circle: !link.hidden"></i></td>
+        <td>
+          <button v-on="click: openLink(link)" class="link-button" v-class="link-button-hidden: link.hidden">{{link.name}}</button>
+        </td>
+      </tr>
+    </table>
+
+    <div id="general-settings">
+      Allow anonymous tracking? blah blah blah
+    </div>
+
+    <script src="dependencies/vue.min.js"></script>
+    <script src="dependencies/jquery-2.1.4.min.js"></script>
+    <script src="popup.js"></script>
   </div>
-  <ul>
-    <li>
-      <button id="qut_blackboard">QUT Blackboard</button>
-    </li>
-    <li>
-      <button id="qut_virtual">QUT Virtual</button>
-    </li>
-    <li>
-      <button id="qut_library">Library</button>
-    </li>
-    <li>
-      <button id="qut_citeWrite">cite|write</button>
-    </li>
-    <li>
-      <button id="qut_assignmentMinder">Assignment Minder</button>
-    </li>
-    <li>
-      <button id="qut_email">Email</button>
-    </li>
-  </ul>
 </body>
 
 </html>
