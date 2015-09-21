@@ -74,18 +74,25 @@ new Vue({
       } else {
         //delete link
       }
+      // Save settings in chrome storage
+      var links = this.$get('links');
+      chrome.storage.sync.set({
+        links: links
+      });
     },
 
     showSettings: function() {
       var settingsView = this.$get('settingsView');
       if (settingsView) {
-        $('#general-settings').hide();
+        // Close settings view
+        $('#general-settings').fadeOut(150);
         $('#links-container').animate({
           marginLeft: -33
         }, 150);
         this.$set('settingsView', false);
       } else {
-        $('#general-settings').show();
+        // Show settings view
+        $('#general-settings').fadeIn(150);
         $('#links-container').animate({
           marginLeft: 0
         }, 150);

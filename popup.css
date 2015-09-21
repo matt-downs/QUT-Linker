@@ -1,5 +1,5 @@
 body {
-  width: 200px;
+  width: 300px;
   color: #00457c;
   -webkit-user-select: none;
 }
@@ -63,6 +63,15 @@ body {
 .link-button:hover {
   background-color: #00294A;
 }
+/*Needed for Vue.js animation*/
+.fade125ms-transition {
+  transition: all .15s ease;
+  opacity: 1;
+}
+.fade125ms-enter, .fade125ms-leave {
+  opacity: 0;
+}
+/*end Vue.js animation*/
 
 .link-button-hidden {
   opacity: 0.5;

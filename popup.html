@@ -17,7 +17,7 @@
     </div>
 
     <table id="links-container">
-      <tr v-repeat="link in links" v-show="!link.hidden || settingsView">
+      <tr v-repeat="link in links" v-show="!link.hidden || settingsView" v-transition="fade125ms">
         <td class="hide-or-delete-icon" v-on="click: toggleOrDeleteLink(link)"><i class="fa" v-class="fa-circle-o: link.hidden, fa-circle: !link.hidden"></i></td>
         <td>
           <button v-on="click: openLink(link)" class="link-button" v-class="link-button-hidden: link.hidden">{{link.name}}</button>
@@ -26,7 +26,8 @@
     </table>
 
     <div id="general-settings">
-      Allow anonymous tracking? blah blah blah
+      <h1>Settings</h1>
+      Send anonymous usage statistics to improve app?
     </div>
 
     <script src="dependencies/vue.min.js"></script>
