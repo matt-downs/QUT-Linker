@@ -36,18 +36,6 @@ body {
   font-size: 1.5em;
 }
 
-#general-settings {
-  display: none;
-  margin-bottom: 10px;
-}
-
-#general-settings i {
-  cursor: pointer;
-  margin-left: 10px;
-  display: block;
-  font-size: 1.5em;
-}
-
 #links-container {
   font-size: 1.5em;
   margin-bottom: 10px;

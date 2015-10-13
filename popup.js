@@ -86,7 +86,6 @@ new Vue({
       var settingsView = this.$get('settingsView');
       if (settingsView) {
         // Close settings view
-        $('#general-settings').fadeOut(150);
         $('.hide-or-delete-icon').animate({
           paddingLeft: 30
         }, 150);
@@ -96,7 +95,6 @@ new Vue({
         this.$set('settingsView', false);
       } else {
         // Show settings view
-        $('#general-settings').fadeIn(150);
         $('.hide-or-delete-icon').animate({
           paddingLeft: 10
         }, 150);
