@@ -69,12 +69,13 @@ new Vue({
 
     toggleOrDeleteLink: function(link) {
       if (link.protected) {
+        // Toggle hidden or visible for default links
         link.hidden = !link.hidden;
         console.log(this.$get('links'));
       } else {
-        //delete link
+        // Delete personal links
       }
-      // Save settings in chrome storage
+      // Save links in chrome storage
       var links = this.$get('links');
       chrome.storage.sync.set({
         links: links
@@ -86,15 +87,21 @@ new Vue({
       if (settingsView) {
         // Close settings view
         $('#general-settings').fadeOut(150);
+        $('.hide-or-delete-icon').animate({
+          paddingLeft: 30
+        }, 150);
         $('#links-container').animate({
-          marginLeft: -33
+          marginRight: -48
         }, 150);
         this.$set('settingsView', false);
       } else {
         // Show settings view
         $('#general-settings').fadeIn(150);
+        $('.hide-or-delete-icon').animate({
+          paddingLeft: 10
+        }, 150);
         $('#links-container').animate({
-          marginLeft: 0
+          marginRight: 0
         }, 150);
         this.$set('settingsView', true);
       }

@@ -1,11 +1,11 @@
 body {
-  width: 300px;
+  width: 200px;
   color: #00457c;
   -webkit-user-select: none;
 }
 
 #header {
-  margin-top: 15px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -33,20 +33,42 @@ body {
 #settings-icon {
   cursor: pointer;
   float: right;
-  margin-right: 5px;
   font-size: 1.5em;
 }
 
 #general-settings {
   display: none;
+  margin-bottom: 10px;
+}
+
+#general-settings i {
+  cursor: pointer;
+  margin-left: 10px;
+  display: block;
+  font-size: 1.5em;
 }
 
 #links-container {
   font-size: 1.5em;
-  margin-left: -33px;
+  margin-bottom: 10px;
+  border-spacing: 0;
+  /* It just works (tm) */
+  margin-right: -48px;
+}
+
+#links-container, #general-settings {
+  float: right;
+  text-align: right;
+}
+
+h1 {
+  font-weight: normal;
+  text-align: right;
+  margin-bottom: 5px;
 }
 
 .link-button {
+  float: right;
   font-size: 1em;
   cursor: pointer;
   text-decoration: none;
@@ -57,20 +79,25 @@ body {
   padding: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-left: 10px;
 }
 
 .link-button:hover {
   background-color: #00294A;
 }
+
+
 /*Needed for Vue.js animation*/
+
 .fade125ms-transition {
   transition: all .15s ease;
   opacity: 1;
 }
+
 .fade125ms-enter, .fade125ms-leave {
   opacity: 0;
 }
+
+
 /*end Vue.js animation*/
 
 .link-button-hidden {
@@ -78,5 +105,7 @@ body {
 }
 
 .hide-or-delete-icon {
+  /*padding-left used for a nifty animation effect*/
+  padding-left: 30px;
   cursor: pointer;
 }
