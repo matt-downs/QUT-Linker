@@ -5,7 +5,7 @@
 <head>
   <title>QUT Linker</title>
   <link rel="stylesheet" type="text/css" href="popup.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="dependencies/font-awesome.css">
 </head>
 
 <body>
@@ -13,19 +13,23 @@
     <div id="header">
       <img src="iconFullRes.png" id="QUT-logo"></img>
       <span id="title">Linker</span>
-      <i class="fa fa-cog" id="settings-icon" v-on="click: showSettings()"></i>
+      <i class="fa fa-cog" v-on:click="showSettings()" id="settings-icon"></i>
     </div>
 
     <table id="links-container">
-      <tr v-repeat="link in links" v-show="!link.hidden || settingsView" v-transition="fade125ms">
+      <tr v-for="link in links" v-show="!link.hidden || settingsView">
         <td>
-          <button v-on="click: openLink(link)" class="link-button" v-class="link-button-hidden: link.hidden">{{link.name}}</button>
+          <button class="link-button" v-on:click="openLink(link)" v-bind:class="{ 'link-button-hidden': link.hidden }">{{link.name}}</button>
+          <!-- <button class="link-button" v-bind:class="link-button-hidden: link.hidden">{{link.name}}</button> -->
         </td>
-        <td class="hide-or-delete-icon" v-on="click: toggleOrDeleteLink(link)"><i class="fa" v-class="fa-circle-o: link.hidden, fa-circle: !link.hidden"></i></td>
+        <td class="hide-or-delete-icon" v-on:click="toggleOrDeleteLink(link)"><i v-bind:class="{ 'fa-circle-o': link.hidden, 'fa-circle': !link.hidden }" class="fa"></i></td>
       </tr>
     </table>
 
-    <script src="dependencies/vue.min.js"></script>
+    <div id="settings">
+    </div>
+
+    <script src="dependencies/vue.js"></script>
     <script src="dependencies/jquery-2.1.4.min.js"></script>
     <script src="popup.js"></script>
   </div>
