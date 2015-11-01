@@ -17,19 +17,23 @@
     </div>
 
     <table id="links-container">
-      <tr v-for="link in links" v-show="!link.hidden || settingsView">
+      <tr v-for="link in links" v-show="!link.hidden || editMode">
         <td>
           <button class="link-button" v-on:click="openLink(link)" v-bind:class="{ 'link-button-hidden': link.hidden }">{{link.name}}</button>
-          <!-- <button class="link-button" v-bind:class="link-button-hidden: link.hidden">{{link.name}}</button> -->
         </td>
         <td class="hide-or-delete-icon" v-on:click="toggleOrDeleteLink(link)"><i v-bind:class="{ 'fa-circle-o': link.hidden, 'fa-circle': !link.hidden }" class="fa"></i></td>
       </tr>
     </table>
 
-    <div id="settings">
+    <div id="settings-container" v-show="editMode" transition="fade150ms">
+      <h2>Settings</h2>
+      <p class="settings-entry">Help contribute to the app by sending anonymous statistics
+        <i class="fa" v-bind:class="{ 'fa-circle-o': !settings.allowAnalytics, 'fa-dot-circle-o': settings.allowAnalytics }" v-on:click="toggleAnalytics()"></i>
+      </p>
+      <span id="github-link" v-on:click="openLink(GitHubLink)">Check out the code <i class="fa fa-github"></i></span>
     </div>
 
-    <script src="dependencies/vue.js"></script>
+    <script src="dependencies/vue.min.js"></script>
     <script src="dependencies/jquery-2.1.4.min.js"></script>
     <script src="popup.js"></script>
   </div>

@@ -3,33 +3,38 @@ var vm = new Vue({
   el: '#list',
 
   data: {
-    settingsView: false,
-    links: []
+    editMode: false,
+    settings: {},
+    links: [],
+    GitHubLink: {
+      URL: 'https://github.com/matt-downs/QUT-Linker',
+      name: 'GitHub'
+    }
   },
 
   created: function() {
-    this.getLinks();
-    this.popupOpened();
+    this.getData();
+  },
+
+  ready: function() {
+    bgPage.popupAnalytics();
   },
 
   methods: {
-    getLinks: function() {
+    getData: function() {
       // Expose Vue to pass into function
       var parentThis = this;
-      bgPage.getLinks(function(links) {
+      bgPage.getData(function(links, settings) {
         parentThis.links = links;
+        parentThis.settings = settings;
       });
-    },
-
-    popupOpened: function() {
-      bgPage.popupOpened();
     },
 
     openLink: function(link) {
       chrome.tabs.create({
         url: link.URL
       });
-      bgPage.sendButtonAnalytics(link.name);
+      bgPage.buttonAnalytics(link.name);
     },
 
     toggleOrDeleteLink: function(link) {
@@ -39,14 +44,21 @@ var vm = new Vue({
       } else {
         // Delete personal links
       }
-      // Save links in chrome storage
-      bgPage.updateChromeStorage(this.links);
+      // Update changes in chrome storage
+      this.updateChromeStorage();
+    },
+
+    updateChromeStorage: function() {
+      bgPage.updateChromeStorage({
+        'links': this.links,
+        'settings': this.settings
+      });
     },
 
     showSettings: function() {
-      if (!this.settingsView) {
+      if (!this.editMode) {
         // Show settings view
-        this.settingsView = true;
+        this.editMode = true;
         $('.hide-or-delete-icon').animate({
           paddingLeft: 10
         }, 150);
@@ -55,14 +67,19 @@ var vm = new Vue({
         }, 150);
       } else {
         // Close settings view
-        this.settingsView = false;
+        this.editMode = false;
         $('.hide-or-delete-icon').animate({
-          paddingLeft: 30
+          paddingLeft: 40
         }, 150);
         $('#links-container').animate({
-          marginRight: -48
+          marginRight: -58
         }, 150);
       }
+    },
+
+    toggleAnalytics: function() {
+      this.settings.allowAnalytics = !this.settings.allowAnalytics;
+      this.updateChromeStorage();
     }
   }
 });

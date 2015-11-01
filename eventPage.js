@@ -1,81 +1,87 @@
-// Store links in memory for fast retrieval
+// Store data in memory for fast retrieval
+var dataIsInBuffer = false;
 var linksBuffer = [];
+var settingsBuffer = {};
 
-
-
-// Fetch the links from Chrome Storage
-function getLinks(callback) {
+function getData(callback) {
   // Buffer is filled
-  if (linksBuffer.length > 0) return callback(linksBuffer);
-  // Get links from Chrome storage and fill buffer
+  if (dataIsInBuffer) return callback(linksBuffer, settingsBuffer);
+
+  // Get data from Chrome storage and fill buffer
   chrome.storage.sync.get(['links', 'settings'], function(result) {
     if (result.links && result.settings) {
-      console.log(result);
+      settingsBuffer = result.settings;
       linksBuffer = result.links;
     } else {
-      // No links found in Chrome storage, add defaults
-      chrome.storage.sync.set({
-        'links': defaultLinks,
-        'settings': true
-      });
+      // No data found in Chrome storage, add defaults
+      settingsBuffer = defaultSettings;
       linksBuffer = defaultLinks;
+      updateChromeStorage({
+        'links': defaultSettings,
+        'settings': defaultSettings
+      });
     }
-    return callback(linksBuffer);
+    dataIsInBuffer = true;
+    return callback(linksBuffer, settingsBuffer);
   });
 }
 
-function updateChromeStorage(links) {
-  chrome.storage.sync.set({
-    'links': links
-  });
+function updateChromeStorage(data) {
+  chrome.storage.sync.set(data);
 }
 
-function popupOpened() {
+function popupAnalytics() {
   // Send notification to google analytics
-  _gaq.push(['_trackPageview']);
+  if (settingsBuffer.allowAnalytics) _gaq.push(['_trackPageview']);
 }
 
-var sendButtonAnalytics = function(label) {
-  _gaq.push(['_trackEvent', label, 'clicked']);
-};
+function buttonAnalytics(label) {
+  // Send notification to google analytics
+  if (settingsBuffer.allowAnalytics) _gaq.push(['_trackEvent', label, 'clicked']);
+}
 
 // Default data for first time setup
 var defaultSettings = {
-  allowAnalytics: true
+  'allowAnalytics': true
 };
 var defaultLinks = [{
-  "name": "QUT Blackboard",
-  "URL": "http://blackboard.qut.edu.au/",
-  "protected": true,
-  "hidden": false
+  'name': 'QUT Blackboard',
+  'URL': 'http://blackboard.qut.edu.au/',
+  'protected': true,
+  'hidden': false
 }, {
-  "name": "QUT Virtual",
-  "URL": "https://qutvirtual.qut.edu.au/",
-  "protected": true,
-  "hidden": false
+  'name': 'QUT Virtual',
+  'URL': 'https://qutvirtual.qut.edu.au/',
+  'protected': true,
+  'hidden': false
 }, {
-  "name": "Library",
-  "URL": "http://www.library.qut.edu.au/",
-  "protected": true,
-  "hidden": false
+  'name': 'Library',
+  'URL': 'http://www.library.qut.edu.au/',
+  'protected': true,
+  'hidden': false
 }, {
-  "name": "cite|write",
-  "URL": "http://www.citewrite.qut.edu.au/",
-  "protected": true,
-  "hidden": false
+  'name': 'cite|write',
+  'URL': 'http://www.citewrite.qut.edu.au/',
+  'protected': true,
+  'hidden': false
 }, {
-  "name": "Assignment Minder",
-  "URL": "http://www.am.qut.edu.au/",
-  "protected": true,
-  "hidden": false
+  'name': 'Assignment Minder',
+  'URL': 'http://www.am.qut.edu.au/',
+  'protected': true,
+  'hidden': false
 }, {
-  "name": "Email",
-  "URL": "http://www.qut.edu.au/email",
-  "protected": true,
-  "hidden": false
+  'name': 'Email',
+  'URL': 'http://www.qut.edu.au/email',
+  'protected': true,
+  'hidden': false
+}, {
+  'name': 'Student Gateway',
+  'URL': 'https://www.student.qut.edu.au/',
+  'protected': true,
+  'hidden': true
 }];
 
-// Setup Google Analytics
+// Initialise Google Analytics
 var analyticsID = 'UA-64329205-3';
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', analyticsID]);

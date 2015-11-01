@@ -1,7 +1,8 @@
 body {
-  width: 200px;
+  width: 215px;
   color: #00457c;
   -webkit-user-select: none;
+  overflow: hidden;
 }
 
 #header {
@@ -40,19 +41,33 @@ body {
   font-size: 1.5em;
   margin-bottom: 10px;
   border-spacing: 0;
-  /* It just works (tm) */
-  margin-right: -48px;
+  /* It just works (tm) lol */
+  margin-right: -58px;
 }
 
-#links-container, #general-settings {
+#links-container {
   float: right;
   text-align: right;
 }
 
-h1 {
+.settings-entry {
+  text-align: left;
+  margin-top: 8px;
+  position: relative;
+  padding-right: 28px;
+}
+.settings-entry i {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 5px;
+  font-size: 1.5em;
+}
+
+h2 {
   font-weight: normal;
-  text-align: right;
-  margin-bottom: 5px;
+  text-align: left;
+  margin-bottom: 0;
 }
 
 .link-button {
@@ -73,28 +88,28 @@ h1 {
   background-color: #00294A;
 }
 
-#settings {
-  
+#github-link {
+  text-decoration: underline;
+  cursor: pointer;
+  padding-bottom: 10px;
+}
+
+#github-link:hover {
+  text-decoration: none;
 }
 
 
 /*Needed for Vue.js animation*/
 
-.expand-transition {
-  transition: all .3s ease;
-  height: 30px;
-  padding: 10px;
-  background-color: #eee;
-  overflow: hidden;
+.fade150ms-transition {
+  transition: all 150ms ease;
+  opacity: 1;
 }
 
-/* .expand-enter defines the starting state for entering */
-/* .expand-leave defines the ending state for leaving */
-.expand-enter, .expand-leave {
-  height: 0;
-  padding: 0 10px;
+.fade150ms-enter, .fade150ms-leave {
   opacity: 0;
 }
+
 
 /*end Vue.js animation*/
 
@@ -104,6 +119,6 @@ h1 {
 
 .hide-or-delete-icon {
   /*padding-left used for a nifty animation effect*/
-  padding-left: 30px;
+  padding-left: 40px;
   cursor: pointer;
 }
