@@ -1,5 +1,9 @@
+// This script handles user interaction and is called every time the popup is
+// opened. This script was kept as minimal as possible, putting the bulk
+// functions in the event page to eliminate possible lag.
+
 var bgPage = chrome.extension.getBackgroundPage();
-var vm = new Vue({
+new Vue({
   el: '#list',
 
   data: {
@@ -17,7 +21,7 @@ var vm = new Vue({
   },
 
   ready: function() {
-    bgPage.popupAnalytics();
+    bgPage.sendScreenView('Home');
   },
 
   methods: {
@@ -34,7 +38,7 @@ var vm = new Vue({
       chrome.tabs.create({
         url: link.URL
       });
-      bgPage.buttonAnalytics(link.name);
+      bgPage.sendEvent('Link', 'clicked', link.name);
     },
 
     toggleOrDeleteLink: function(link) {
@@ -58,6 +62,7 @@ var vm = new Vue({
     showSettings: function() {
       if (!this.editMode) {
         // Show settings view
+        bgPage.sendScreenView('Settings');
         this.editMode = true;
         $('.hide-or-delete-icon').animate({
           paddingLeft: 10
@@ -68,6 +73,7 @@ var vm = new Vue({
       } else {
         // Close settings view
         this.editMode = false;
+        bgPage.sendScreenView('Home');
         $('.hide-or-delete-icon').animate({
           paddingLeft: 40
         }, 150);
@@ -78,7 +84,13 @@ var vm = new Vue({
     },
 
     toggleAnalytics: function() {
-      this.settings.allowAnalytics = !this.settings.allowAnalytics;
+      if (this.settings.allowAnalytics) {
+        bgPage.sendEvent('Analytics', 'disabled');
+        this.settings.allowAnalytics = false;
+      } else {
+        this.settings.allowAnalytics = true;
+        bgPage.sendEvent('Analytics', 'enabled');
+      }
       this.updateChromeStorage();
     }
   }
