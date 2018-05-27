@@ -78,8 +78,8 @@ var defaultLinks = [{
   'protected': true,
   'hidden': false
 }, {
-  'name': 'QUT Virtual',
-  'URL': 'https://qutvirtual.qut.edu.au/',
+  'name': 'QUT HiQ',
+  'URL': 'https://qutvirtual4.qut.edu.au/',
   'protected': true,
   'hidden': false,
   'subLinks': [{
@@ -92,18 +92,23 @@ var defaultLinks = [{
   'protected': true,
   'hidden': false
 }, {
+  'name': 'Book Study Rooms',
+  'URL': 'https://spaces.library.qut.edu.au/',
+  'protected': true,
+  'hidden': false
+}, {	
   'name': 'cite|write',
   'URL': 'http://www.citewrite.qut.edu.au/',
   'protected': true,
   'hidden': false
 }, {
-  'name': 'Assignment Minder',
-  'URL': 'http://www.am.qut.edu.au/',
+  'name': 'Student Email',
+  'URL': 'http://www.qut.edu.au/email',
   'protected': true,
   'hidden': false
 }, {
-  'name': 'Email',
-  'URL': 'http://www.qut.edu.au/email',
+  'name': 'Student Calendar',
+  'URL': 'https://qutvirtual4.qut.edu.au/group/student/calendar/',
   'protected': true,
   'hidden': false
 }, {
