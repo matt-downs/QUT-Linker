@@ -41,13 +41,8 @@ new Vue({
       bgPage.sendEvent('Link', 'clicked', link.name);
     },
 
-    toggleOrDeleteLink: function(link) {
-      if (link.protected) {
-        // Toggle hidden or visible for default links
-        link.hidden = !link.hidden;
-      } else {
-        // Delete personal links
-      }
+    toggleLink: function(link) {
+      link.hidden = !link.hidden;
       // Update changes in chrome storage
       this.updateChromeStorage();
     },

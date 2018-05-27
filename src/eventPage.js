@@ -42,7 +42,6 @@ function processData(result) {
       for (var j in oldLinks) {
         if (links[i].name == oldLinks[j].name) {
           links[i].hidden = oldLinks[j].hidden;
-          console.log(oldLinks[i].protected);
         }
       }
     }
@@ -75,47 +74,31 @@ var defaultSettings = {
 var defaultLinks = [{
   'name': 'QUT Blackboard',
   'URL': 'http://blackboard.qut.edu.au/',
-  'protected': true,
   'hidden': false
 }, {
   'name': 'QUT HiQ',
   'URL': 'https://qutvirtual4.qut.edu.au/',
-  'protected': true,
-  'hidden': false,
-  'subLinks': [{
-    'name': 'Study',
-    'URL': 'http://www.google.com'
-  }]
+  'hidden': false
 }, {
   'name': 'Library',
   'URL': 'http://www.library.qut.edu.au/',
-  'protected': true,
   'hidden': false
 }, {
   'name': 'Book Study Rooms',
   'URL': 'https://spaces.library.qut.edu.au/',
-  'protected': true,
   'hidden': false
 }, {	
   'name': 'cite|write',
   'URL': 'http://www.citewrite.qut.edu.au/',
-  'protected': true,
   'hidden': false
 }, {
   'name': 'Student Email',
   'URL': 'http://www.qut.edu.au/email',
-  'protected': true,
   'hidden': false
 }, {
   'name': 'Student Calendar',
   'URL': 'https://qutvirtual4.qut.edu.au/group/student/calendar/',
-  'protected': true,
   'hidden': false
-}, {
-  'name': 'Student Gateway',
-  'URL': 'https://www.student.qut.edu.au/',
-  'protected': true,
-  'hidden': true
 }];
 
 function sendScreenView(screen) {

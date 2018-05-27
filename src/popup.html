@@ -21,7 +21,7 @@
         <td>
           <button class="link-button" v-on:click="openLink(link)" v-bind:class="{ 'link-button-hidden': link.hidden }">{{link.name}}</button>
         </td>
-        <td class="hide-or-delete-icon" v-on:click="toggleOrDeleteLink(link)"><i v-bind:class="{ 'fa-circle-o': link.hidden, 'fa-circle': !link.hidden }" class="fa"></i></td>
+        <td class="hide-or-delete-icon" v-on:click="toggleLink(link)"><i v-bind:class="{ 'fa-circle-o': link.hidden, 'fa-circle': !link.hidden }" class="fa"></i></td>
       </tr>
     </table>
 
