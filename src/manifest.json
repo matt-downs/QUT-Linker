@@ -1,28 +1,22 @@
 {
   "manifest_version": 2,
-
   "name": "QUT Linker",
   "description": "This extension simply provides shortcuts to commonly used links for students of Queensland University of Technology.",
-  "version": "2.1",
-
+  "version": "2.2",
   "browser_action": {
     "default_icon": "iconFullRes.png",
     "default_popup": "popup.html"
   },
-
   "icons": {
     "16": "iconWithLinker.png",
     "48": "iconWithLinker.png",
     "128": "iconWithLinker.png"
   },
-
   "background": {
     "scripts": ["eventPage.js"]
   },
-
   "permissions": [
     "storage"
   ],
-
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.google-analytics.com; object-src 'self'"
 }
